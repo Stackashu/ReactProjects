@@ -6,50 +6,54 @@ import RoleDice from "./RoleDice";
 import { useState } from "react";
 
 const PlayGame = () => {
-  const [nums, setNums] = useState();
+  const [nums, setNums] = useState(null);
   const [diceNum, setDiceNUm] = useState(1);
-  const [score ,setScore] = useState(0);
-  const [ error,setError] = useState();
-  
-  const scoreReset = ()=>{
+  const [score, setScore] = useState(0);
+  const [error, setError] = useState();
+
+  const scoreReset = () => {
     setScore(0);
-  }
+  }; 
 
   const generateRandomDiceNUm = () => {
-   return Math.floor(Math.random() * 6) + 1;
-  
+    return Math.floor(Math.random() * 6) + 1;
   };
+const rolldice = () => {
+  if (nums == null) {
+    setError("Please Select a number");
+    return;
+  }
+  setError('')
   
-  const rolldice = () => {
+  const randomNum = generateRandomDiceNUm();
+  setDiceNUm((prev) => randomNum);
 
-    if(!nums){
-      setError("Please Select a number");
-      return;
-    }
-    const randomNum = generateRandomDiceNUm();
-    setDiceNUm((prev) => generateRandomDiceNUm());
-   
-   
-    if(nums == randomNum){
-      setScore((prev) => prev + nums);
-    }else{
-      setScore((prev) => prev - nums);
-    }
+  if (nums == randomNum) {
+    setScore((prev) => prev + nums);
+  } else if(nums!= randomNum) {
+    setScore((prev) => prev - nums);
+  }
 
-    setNums(" ")
-  };
-//  how to hide a comopnent after clicking on a button?
-  
+  setNums(null);
+};
+
   return (
     <>
       <Container>
         <div className="topSection">
-        <TotalScore score={score} />
-        <SelectNum  setNums={setNums} nums={nums} error={error} setError={setError} />
-
+          <TotalScore score={score} />
+          <SelectNum
+            setNums={setNums}
+            nums={nums}
+            error={error}
+            setError={setError}
+          />
         </div>
-      <RoleDice  rolldice={rolldice} diceNum={diceNum} scoreReset={scoreReset}  />
-
+        <RoleDice
+          rolldice={rolldice}
+          diceNum={diceNum}
+          scoreReset={scoreReset}
+        />
       </Container>
     </>
   );
@@ -58,14 +62,13 @@ const PlayGame = () => {
 export default PlayGame;
 
 const Container = styled.div`
-.topSection{
+  .topSection {
     display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5vw;
-  font-size: 3vw;
-}
-
+    justify-content: space-between;
+    align-items: center;
+    padding: 5vw;
+    font-size: 3vw;
+  }
 
   .score {
     font-weight: 900;

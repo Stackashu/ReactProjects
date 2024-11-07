@@ -8,8 +8,8 @@ const Rules = () => {
           <li>Select any number of your choice</li>
           <li>Click on the dice</li>
           <li>
-            If your the selected number is equal to the dice the score will
-            incresase buy the number of dice
+            If your  selected number is equal to the dice the score will
+            incresase by the number of dice
           </li>
           <li>
             If the seleted number is not similar as dice then the score will

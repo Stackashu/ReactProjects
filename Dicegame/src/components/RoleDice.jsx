@@ -21,7 +21,7 @@ const [isVisible,setIsVisible] =  useState(false);
         <Button onClick={scoreReset}>Reset</Button>
         <Button onClick={handleDiceClick}>Show Rules</Button>
          {isVisible ? <Rules/> : " " }
-      </Container>
+      </Container> 
     </>
   );
 };

@@ -5,7 +5,10 @@ const SelectNum = ({nums , setNums, error, setError}) => {
   const numArray = [1, 2, 3, 4, 5, 6];
 
   const clickedNumber = (value)=>{
-    setError(" ");
+    if(error){
+      setError("You selected the Number ");
+    }
+   
     setNums(value)
 
   }
@@ -28,7 +31,7 @@ const SelectNum = ({nums , setNums, error, setError}) => {
       </Container>
     </>
   );
-};
+}; 
 
 export default SelectNum;
 
